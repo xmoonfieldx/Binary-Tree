@@ -1,0 +1,109 @@
+class Root:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+        
+    def insert_data(self,data):
+        if self.data:
+            if data<self.data:
+                if self.left==None:
+                    self.left=Root(data)
+                else:    
+                    self.left.insert_data(self.left,data)
+            elif data>self.data:
+                if self.right==None:
+                    self.right=Root(data)
+                else:
+                    self.right.insert_data(data)
+        #else:
+            #self.data=data
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data)
+        inorder(root.right)
+        
+class Solution:
+    def invertTree(self, root):
+       if root == None:
+           return
+       temp=root.left
+       root.left=root.right
+       root.right=temp
+       self.invertTree(root.left)
+       self.invertTree(root.right)
+       return root
+        
+if __name__ == "__main__":
+    n=int(input())
+    k=input()
+    root=Root(k)
+    for i in range(n-1):
+        k=input()
+        root.insert_data(k)
+    inorder(root)
+    Solution().invertTree(root)
+    inorder(root)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''class Root:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+
+    def insert(self,data):
+        if self.data:
+            if data<self.data:
+                if self.left==None:
+                    self.left=Root(data)
+                else:
+                    self.left.insert(data)
+            elif data>self.data:
+                if self.right==None:
+                    self.right=Root(data)
+                else:
+                    self.right.insert(data)
+        else:
+            self.data=data
+    def printtree(self):
+        if root:
+            if self.left:
+                self.left.printtree()
+            if self.right:
+                self.right.printtree()
+            print(self.data)
+
+if __name__ == '__main__':
+        root = Root(1)
+        root.insert(2)
+        root.printtree()'''
+
+                
+
