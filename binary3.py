@@ -16,7 +16,18 @@ class Root:
                 self.right=Root(data)
             else:
                 self.right.insert(data)
-    
+def levelOrder(root):
+    queue=deque()
+    queue.append(root)
+    while queue:
+        node=queue.popleft()
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+
+        print(node.data,end=' ')
+        
 def inorder(root):
     if root:
         inorder(root.left)
@@ -56,6 +67,9 @@ if __name__ == "__main__":
     print()
     postorder(root)
     print()
+    levelOrder(root)
+    print()
     Solution().invertTree(root)
     inorder(root)
+    
     
