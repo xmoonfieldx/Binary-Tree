@@ -19,29 +19,28 @@ class Root:
                 self.right.insert(data)
 def left(root):
     if not root:
-        return
+        return 
     q=[]
     q.append(root)
-    while (len(q)):
+    while len(q):
         n=len(q)
         for i in range(1,n+1):
-            temp=q.pop(0)
+            node=q.pop(0)
             if i==1:
-                print(temp.data,end=' ')
-            if temp.left:
-                q.append(temp.left)
-            if temp.right:
-                q.append(temp.right)
-                
+                print(node.data,end=' ')
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
 def right(root):
     if not root:
-        return
-    q = []
+        return 
+    q=[]
     q.append(root)
-    while (len(q)):
-        n = len(q)
+    while len(q):
+        n=len(q)
         for i in range(1,n+1):
-            node = q.pop(0)
+            node=q.pop(0)
             if i==n:
                 print(node.data,end=' ')
             if node.left:
@@ -49,6 +48,14 @@ def right(root):
             if node.right:
                 q.append(node.right)
     
+def height(root):
+    return rec(root)-1
+def rec(root):
+    if not root:
+        return 0
+    left=1+rec(root.left)
+    right=1+rec(root.right)
+    return max(left,right)
     
 if __name__ == "__main__":
     root = Root(10)
@@ -60,3 +67,4 @@ if __name__ == "__main__":
     print('\nRight View')
     right(root)
     print('\nDone')
+    print(height(root))
