@@ -1,0 +1,62 @@
+from queue import deque
+class Root:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+    def insert(self,data):
+        if self.data==None:
+            self.data=data
+        elif data<self.data:
+            if self.left==None:
+                self.left=Root(data)
+            else:
+                self.left.insert(data)
+        elif data>self.data:
+            if self.right==None:
+                self.right=Root(data)
+            else:
+                self.right.insert(data)
+def left(root):
+    if not root:
+        return
+    q=[]
+    q.append(root)
+    while (len(q)):
+        n=len(q)
+        for i in range(1,n+1):
+            temp=q.pop(0)
+            if i==1:
+                print(temp.data,end=' ')
+            if temp.left:
+                q.append(temp.left)
+            if temp.right:
+                q.append(temp.right)
+                
+def right(root):
+    if not root:
+        return
+    q = []
+    q.append(root)
+    while (len(q)):
+        n = len(q)
+        for i in range(1,n+1):
+            node = q.pop(0)
+            if i==n:
+                print(node.data,end=' ')
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+    
+    
+if __name__ == "__main__":
+    root = Root(10)
+    k=[2,3,7,8,15,12,14]
+    for i in range(len(k)):
+            root.insert(k[i])
+    print('Left View')
+    left(root)
+    print('\nRight View')
+    right(root)
+    print('\nDone')
